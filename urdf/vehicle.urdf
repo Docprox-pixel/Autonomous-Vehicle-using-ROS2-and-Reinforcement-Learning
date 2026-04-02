@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<robot name="vehicle">
+    <webots>
+        <plugin type="auto_car.vehicle_driver.VehicleDriver" />
+        <device reference="front_camera" type="Camera">
+            <ros>
+                <topicName>/front_camera/image_raw</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+        <device reference="lidar" type="Lidar">
+            <ros>
+                <topicName>/lidar/scan</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+        <device reference="gps" type="GPS">
+            <ros>
+                <topicName>/gps/fix</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+        <device reference="imu" type="InertialUnit">
+            <ros>
+                <topicName>/imu/data</topicName>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+    </webots>
+</robot>
