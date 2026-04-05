@@ -12,14 +12,14 @@ from stable_baselines3.common.monitor import Monitor
 from car_env import CarEnv
 
 
-# -------- SINGLE ENV (No eval env conflict) --------
+#  SINGLE ENV 
 def make_env():
     return Monitor(CarEnv())
 
 env = DummyVecEnv([make_env])
 
 
-# -------- CHECKPOINT --------
+#  CHECKPOINT 
 checkpoint_callback = CheckpointCallback(
     save_freq=5000,
     save_path="./ppo_checkpoints/",
@@ -27,7 +27,7 @@ checkpoint_callback = CheckpointCallback(
 )
 
 
-# -------- LOAD / CREATE MODEL --------
+#  LOAD / CREATE MODEL 
 model_path = "bmw_rl_driver.zip"
 
 if os.path.exists(model_path):
@@ -50,7 +50,7 @@ else:
     )
 
 
-# -------- TRAIN --------
+#  TRAIN 
 print("Training started... Car should move forward!")
 print("Press Ctrl+C to stop and save")
 
@@ -63,7 +63,7 @@ except KeyboardInterrupt:
     print("Stopped by user.")
 
 
-# -------- SAVE --------
+#  SAVE 
 model.save("bmw_rl_driver")
 print("Model saved as bmw_rl_driver.zip")
 print("Training complete!")
