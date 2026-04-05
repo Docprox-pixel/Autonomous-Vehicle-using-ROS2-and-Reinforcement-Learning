@@ -5,13 +5,6 @@
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <string>
 #include <vector>
-
-/**
- * 🗺️ TESLA-STYLE BEHAVIORAL PLANNER
- * States: NORMAL, APPROACH, WAIT, DECIDE, TURNING.
- * Logic: Deliberates for 10 frames at intersections.
- */
-
 enum class DriveState { NORMAL, APPROACH_INTERSECTION, WAIT, DECIDE, TURNING, AVOID_OBSTACLE };
 
 class PlanningNode : public rclcpp::Node {
@@ -121,11 +114,11 @@ private:
                 break;
         }
 
-        // --- Kinematic Smoothing ---
+        // Kinematic Smoothing 
         current_speed_ = (0.8 * current_speed_) + (0.2 * target_v);
         current_steering_ = (0.8 * current_steering_) + (0.2 * target_s);
 
-        // --- Publish Outputs ---
+        // Publish Outputs 
         auto msg_state = std_msgs::msg::String(); msg_state.data = state_str;
         pub_state_->publish(msg_state);
 
