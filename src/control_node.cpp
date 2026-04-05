@@ -6,13 +6,6 @@
 #include <cmath>
 #include <algorithm>
 
-/**
- * 🏎️ TESLA-STYLE STANLEY CONTROL NODE
- * 1. Implementation: Stanley Controller (delta = psi + atan(k*e/v))
- * 2. Integration: 0.6*ML + 0.4*Stanley 
- * 3. Goal: Smooth, high-fidelity lane centering.
- */
-
 class ControlNode : public rclcpp::Node
 {
 public:
