@@ -7,11 +7,6 @@
 #include <algorithm>
 #include <vector>
 
-/**
- * 🏎️ THE ULTIMATE UNIFIED CONTROLLER
- * Includes: 360° LiDAR, Phase-1 Lane Following, Traffic Light Detection, and High-Speed Tuning.
- */
-
 class CarController : public rclcpp::Node
 {
 public:
@@ -38,9 +33,7 @@ private:
 
         int n = ranges.size();
         
-        // --- 1. 360-Degree Sector Analysis ---
-        // Front (±30°), Left (60°-120°), Right (240°-300°), Rear (150°-210°)
-        // Assuming 0 is Behind, 180 is Front (as per Webots Lidar defaults)
+        //  1. 360-Degree Sector Analysis 
         
         auto get_min = [&](int start_deg, int end_deg) {
             float m = 30.0;
@@ -71,7 +64,7 @@ private:
         int height = frame.rows;
         int width  = frame.cols;
 
-        // --- 1. Perception (HSV) ---
+        //  1. Perception (HSV) 
         cv::Mat hsv, lane_mask, red_mask;
         cv::cvtColor(frame, hsv, cv::COLOR_BGR2HSV);
 
@@ -85,7 +78,7 @@ private:
         cv::inRange(hsv, cv::Scalar(0, 120, 100), cv::Scalar(10, 255, 255), red_mask);
         int red_pixels = cv::countNonZero(red_mask(cv::Range(0, height/2), cv::Range::all()));
 
-        // --- 2. Planning (Lane Centering) ---
+        //  2. Planning (Lane Centering) 
         // We look at the lower ROI for immediate steering
         cv::Mat roi = lane_mask(cv::Range(height * 0.6, height), cv::Range::all());
         cv::Moments mo = cv::moments(roi, true);
@@ -105,7 +98,7 @@ private:
             steering = std::max(std::min(steering, 0.4), -0.4);
         }
 
-        // --- 3. Speed Control ---
+        //  3. Speed Control 
         float target_speed = 40.0; // User target: 40 m/s
 
         // Smooth Brake for Obstacles
@@ -126,7 +119,7 @@ private:
 
         if (target_speed < 0) target_speed = 0;
 
-        // --- 4. Actuation ---
+        //  4. Actuation 
         geometry_msgs::msg::Twist cmd;
         cmd.linear.x = target_speed;
         cmd.angular.z = steering;
