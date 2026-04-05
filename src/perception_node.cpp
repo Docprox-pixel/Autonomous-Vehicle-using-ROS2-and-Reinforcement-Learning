@@ -5,10 +5,6 @@
 #include <std_msgs/msg/float32.hpp>
 #include <opencv2/opencv.hpp>
 
-/**
- * 👁️ PERCEPTION NODE (V3: Scene Awareness)
- * Features: Lane segmentation + Yellow crosswalk/intersection detection.
- */
 class PerceptionNode : public rclcpp::Node {
 public:
     PerceptionNode() : Node("perception_node") {
