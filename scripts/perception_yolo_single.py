@@ -9,11 +9,6 @@ import numpy as np
 from collections import deque
 from ultralytics import YOLO
 
-# 👁️ YOLOv8 PERCEPTION NODE
-# Detects: Cars, Pedestrians, Crosswalks.
-# Filter: 5-frame persistence (Stability focus).
-# Target: 10 Hz inference.
-
 class PerceptionNodeLegacy(Node):
     def __init__(self):
         super().__init__('perception_node_v8')
@@ -66,7 +61,6 @@ class PerceptionNodeLegacy(Node):
                             frame_intersection = True
 
             # 3. HEURISTIC CROSSWALK DETECTION (Stripes)
-            # COCO doesn't natively have "crosswalk," so we look for patterns in the road ROI
             h, w, _ = cv_img_small.shape
             road_roi = cv_img_small[int(h*0.7):h, :]
             gray = cv2.cvtColor(road_roi, cv2.COLOR_BGR2GRAY)
@@ -89,10 +83,7 @@ class PerceptionNodeLegacy(Node):
             self.inter_pub.publish(msg_inter)
             self.obst_pub.publish(msg_obst)
             
-            # Debug Log (Every 10 frames)
-            # if rclpy.clock.Clock().now().nanoseconds % 10 == 0:
-            #     self.get_logger().info(f"[YOLOv8] OBST:{int(stable_obst)} INT:{int(stable_inter)}")
-
+            # Debug Log 
         except Exception as e:
             self.get_logger().error(f'Perception Fault: {str(e)}')
 
