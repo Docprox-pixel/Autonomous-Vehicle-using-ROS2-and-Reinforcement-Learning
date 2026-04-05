@@ -9,11 +9,6 @@ import numpy as np
 import json
 from ultralytics import YOLO
 
-# 👁️ TESLA-STYLE UNIFIED PERCEPTION
-# - YOLOv8: Object Detection
-# - Segmentation: Lane tracking for Stanley Control
-# - Performance: 10Hz @ 320x160
-
 class PerceptionNode(Node):
     def __init__(self):
         super().__init__('perception_node')
@@ -73,7 +68,7 @@ class PerceptionNode(Node):
                             cv2.rectangle(debug_img, (x1, y1), (x2, y2), (0, 255, 0), 2)
                             cv2.putText(debug_img, f'{label} {conf:.2f}', (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), 1)
 
-            # --- 2. LANE SEGMENTATION (Cross-track Error) ---
+            # 2. LANE SEGMENTATION 
             # Define ROI for lower road
             h, w, _ = cv_img_small.shape
             roi = cv_img_small[int(h*0.6):h, :]
