@@ -54,7 +54,7 @@ class CarEnv(gym.Env):
         self.lane_error = 0.0
         self.objects_detected = "None"
 
-    # ---------------- LIDAR ----------------
+    # LIDAR 
     def lidar_callback(self, msg):
         ranges = np.array(msg.ranges)
         ranges = np.nan_to_num(ranges, nan=msg.range_max)
@@ -62,7 +62,7 @@ class CarEnv(gym.Env):
         indices = np.linspace(0, len(ranges) - 1, 36, dtype=int)
         self.latest_scan = np.clip(ranges[indices] / msg.range_max, 0, 1)
 
-    # ---------------- CAMERA ----------------
+    #  CAMERA 
     def camera_callback(self, msg):
         try:
             frame = self.bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -84,11 +84,11 @@ class CarEnv(gym.Env):
         except:
             pass
 
-    # ---------------- ODOM ----------------
+    #  ODOM 
     def odom_callback(self, msg):
         self.speed = msg.twist.twist.linear.x / 15.0
 
-    # ---------------- WORLD ----------------
+    #  WORLD 
     def world_cb(self, msg):
         try:
             data = json.loads(msg.data)
@@ -101,7 +101,7 @@ class CarEnv(gym.Env):
         except:
             pass
 
-    # ---------------- OBS ----------------
+    #  OBS 
     def get_observation(self):
 
         # 🔥 Directional awareness
@@ -117,7 +117,7 @@ class CarEnv(gym.Env):
 
         return obs
 
-    # ---------------- STEP ----------------
+    #  STEP 
     def step(self, action):
 
         steer_msg = Float32()
@@ -136,7 +136,7 @@ class CarEnv(gym.Env):
         terminated = False
         truncated = False
 
-        # ===== 🔥 NEW REWARD =====
+        #  NEW REWARD 
         reward = 0.0
 
         expected_speed = float(action[0] * 12.0)
@@ -172,7 +172,7 @@ class CarEnv(gym.Env):
 
         return obs, reward, terminated, truncated, {}
 
-    # ---------------- RESET ----------------
+    #  RESET 
     def reset(self, seed=None, options=None):
 
         super().reset(seed=seed)
