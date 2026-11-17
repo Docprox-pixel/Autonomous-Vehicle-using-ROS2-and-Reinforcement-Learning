@@ -10,7 +10,6 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
-find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(ackermann_msgs REQUIRED)
@@ -22,16 +21,6 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   msg/Track.msg
   msg/TrackArray.msg
   DEPENDENCIES std_msgs geometry_msgs)
-
-# ---- C++ nodes -------------------------------------------------------------
-add_executable(planning_node src/planning_node.cpp)
-ament_target_dependencies(planning_node rclcpp std_msgs sensor_msgs)
-
-add_executable(control_node src/control_node.cpp)
-ament_target_dependencies(control_node rclcpp std_msgs sensor_msgs ackermann_msgs)
-
-install(TARGETS planning_node control_node
-  DESTINATION lib/${PROJECT_NAME})
 
 # ---- Python ----------------------------------------------------------------
 # Python module is auto_car_sim (not auto_car): rosidl already generates the 'auto_car'

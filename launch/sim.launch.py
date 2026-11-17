@@ -147,26 +147,16 @@ def generate_launch_description():
                       parameters=[sim_time], condition=IfCondition(LaunchConfiguration('driver_monitor')))
 
     # ---- driving: local planner (Phase 2) -> /cmd_drive_raw -> shield ------
-    legacy = LaunchConfiguration('legacy')
     # planner:=arcs (default, hand-written arc planner) or planner:=rl (trained SAC policy, Phase 5).
     # Both publish /cmd_drive_raw and sit behind the same safety shield and traffic rules.
     which = LaunchConfiguration('planner')
-    drive_on = ["'", stack, "'.lower() in ('true','1') and '", legacy, "'.lower() not in ('true','1')"]
+    drive_on = ["'", stack, "'.lower() in ('true','1')"]
     planner = Node(package='auto_car', executable='local_planner.py', output='screen',
                    parameters=[sim_time], condition=IfCondition(PythonExpression(
                        drive_on + [" and '", which, "' != 'rl'"])))
     rl_planner = Node(package='auto_car', executable='rl_planner.py', output='screen',
                       parameters=[sim_time], condition=IfCondition(PythonExpression(
                           drive_on + [" and '", which, "' == 'rl'"])))
-    # Old reactive stack (YOLO + HSV lanes + state machine + Stanley), kept for comparison only.
-    legacy_nodes = [
-        Node(package='auto_car', executable='perception_node.py', output='screen',
-             parameters=[sim_time], condition=IfCondition(legacy)),
-        Node(package='auto_car', executable='planning_node', output='screen',
-             parameters=[sim_time], condition=IfCondition(legacy)),
-        Node(package='auto_car', executable='control_node', output='screen',
-             parameters=[sim_time, {'k_stanley': 3.5, 'v_max': 20.0}], condition=IfCondition(legacy)),
-    ]
 
     # ---- visualisation ------------------------------------------------------
     rviz_cfg = PythonExpression(["'", os.path.join(cfg, 'slam.rviz'), "' if '", slam,
@@ -181,7 +171,6 @@ def generate_launch_description():
                               description='driver attention monitor + hospital emergency mode'),
         DeclareLaunchArgument('planner', default_value='arcs',
                               description="'arcs' = hand-written planner, 'rl' = trained SAC policy"),
-        DeclareLaunchArgument('legacy', default_value='false', description='old reactive stack instead of the planner'),
         DeclareLaunchArgument('slam', default_value='false', description='run slam_toolbox (build a map)'),
         DeclareLaunchArgument('rviz', default_value='false', description='open RViz'),
         DeclareLaunchArgument('detector', default_value='rtdetr-l.pt',
@@ -204,7 +193,6 @@ def generate_launch_description():
         slam_configure,
         planner,
         rl_planner,
-        *legacy_nodes,
         rviz_node,
         RegisterEventHandler(OnProcessExit(target_action=webots,
                                            on_exit=[EmitEvent(event=Shutdown())])),
