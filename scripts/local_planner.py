@@ -544,6 +544,14 @@ class LocalPlanner(Node):
         self.dbg.update(v_target=round(float(v_target), 2), a_speed=round(float(a_des), 2))
         if self.evade[0] and self.evade[1] is not None:
             a_des = min(a_des, float(self.evade[1]))        # RL evasion may brake harder, never faster
+        a_des = float(a_des)
+        # NEVER STOP ON THE ROAD WITHOUT A REASON (hard rule over the RL policies): nearly stopped,
+        # the planner wants to move, no rule stop and nothing within 8 m in the lane -> pull away
+        # gently (the shield still prevents any collision)
+        free_near = min(free_obj, getattr(self.evader, 'dx', math.inf) if self.evade[0] else math.inf)
+        if v_prev < 0.5 and v_target > 0.5 and not rule_stop and free_near > 8.0 and a_des < 0.5:
+            a_des = 0.5
+            self.dbg['unfreeze'] = True
         self.dbg.update(evade=[bool(self.evade[0]), None if self.evade[1] is None else round(float(self.evade[1]), 2),
                                round(float(self.evade[2]), 2), self.evade[3]])
         jerk = 2.0 if (firm and a_des < a_prev) else 1.0

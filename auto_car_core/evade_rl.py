@@ -45,6 +45,7 @@ class Evader:
         self.y_prev = None
         self.target = 0.0
         self.active = False
+        self.dx = math.inf
         if model_path and os.path.exists(model_path):
             try:
                 from stable_baselines3 import SAC
@@ -99,6 +100,7 @@ class Evader:
                     if gap > -4.5:
                         meet = min(meet, max(gap, 0.0) / max(v - T[k, 2], 0.5))
                         nearest = min(nearest, gap)
+        self.dx = dx
         o = np.array([v / 10, a / 6, y / 2, vy / 2, np.clip(dx, -10, 60) / 30, lo / 2, hi / 2, o_vy / 2,
                       min(meet, 10) / 10, min(nearest, 200) / 100, ped, (y - CENTRE) / 2], np.float32)
         return o, meet

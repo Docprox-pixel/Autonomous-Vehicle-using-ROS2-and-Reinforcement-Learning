@@ -41,7 +41,15 @@ class SpeedController:
         (m, large if none); stop_dist: distance to a rule stop line (m, large if none)."""
         is_line = stop_dist < free_obj and stop_dist < 1e8
         free = min(free_obj, stop_dist, 200.0)
-        rate = 0.0 if self.prev_free is None else (self.prev_free - free) / dt
+        # closing speed of what is ahead: a jump of > 2 m between scans is a DIFFERENT object (cross
+        # traffic in a junction), not something approaching - the raw difference made the policy
+        # brake at full force while the car stood on a green light
+        if self.prev_free is None or abs(self.prev_free - free) > 2.0:
+            raw = 0.0
+        else:
+            raw = (self.prev_free - free) / dt
+        self.rate = 0.7 * getattr(self, 'rate', 0.0) + 0.3 * raw
+        rate = self.rate
         self.prev_free = free
         room = stop_dist if stop_dist < 1e8 else 200.0
         if self.model is not None:
