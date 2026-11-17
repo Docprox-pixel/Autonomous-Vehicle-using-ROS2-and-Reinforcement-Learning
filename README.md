@@ -13,8 +13,10 @@ A hand-written planner does the driving; **reinforcement learning makes the deci
 driver makes (when to go at a junction, how to brake, how to react when something appears in
 front); a **safety shield** has the final word on every command.
 
-> 🎥 **Demo:** the car drives itself to the hospital and parks — see [`docs/demo/`](docs/demo/)
-> (record your own with `tools/record_demo.sh`).
+> 🎥 **Demo video:** the car drives itself to the hospital through traffic, traffic lights and
+> roundabouts, then parks in a free bay — watch it on my
+> **[LinkedIn profile](https://www.linkedin.com/in/aryan-yadav-1858632b5)**.
+> Record your own run with `tools/record_demo.sh`.
 
 ---
 
