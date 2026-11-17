@@ -1,0 +1,16 @@
+<connections>
+  <connection from="ring_main" to="ring_decel" fromLane="0" toLane="0"/>
+  <connection from="ring_main" to="ring_decel" fromLane="0" toLane="1"/>
+  <connection from="ring_main" to="ring_decel" fromLane="1" toLane="2"/>
+  <connection from="ring_decel" to="ramp_off" fromLane="0" toLane="0"/>
+  <connection from="ring_decel" to="ring_mid" fromLane="1" toLane="0"/>
+  <connection from="ring_decel" to="ring_mid" fromLane="2" toLane="1"/>
+  <connection from="ring_mid" to="ring_accel" fromLane="0" toLane="1"/>
+  <connection from="ring_mid" to="ring_accel" fromLane="1" toLane="2"/>
+  <connection from="ramp_on" to="ring_accel" fromLane="0" toLane="0"/>
+  <connection from="ring_accel" to="ring_main" fromLane="0" toLane="0"/>
+  <connection from="ring_accel" to="ring_main" fromLane="1" toLane="0"/>
+  <connection from="ring_accel" to="ring_main" fromLane="2" toLane="1"/>
+  <connection from="0" to="ramp_on" fromLane="0" toLane="0"/>
+  <connection from="ramp_off" to="-0" fromLane="0" toLane="0"/>
+</connections>

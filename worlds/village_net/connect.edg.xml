@@ -1,0 +1,6 @@
+<edges>
+  <edge id="link_33_Custom19" from="33" to="Custom19" numLanes="1" speed="5.0" width="2.5"/>
+  <edge id="link_Custom20_32" from="Custom20" to="32" numLanes="1" speed="5.0" width="2.5"/>
+  <edge id="link_35_Custom27" from="35" to="Custom27" numLanes="1" speed="5.0" width="2.5"/>
+  <edge id="link_Custom28_34" from="Custom28" to="34" numLanes="1" speed="5.0" width="2.5"/>
+</edges>

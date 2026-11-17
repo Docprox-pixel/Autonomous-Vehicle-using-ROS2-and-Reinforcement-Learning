@@ -1,0 +1,8 @@
+source: city.wbt
+lights:
+- type: GenericTrafficLight
+  x: -34.665
+  y: 55.2732
+- type: CrossRoadsTrafficLight
+  x: 45.0
+  y: -45.0

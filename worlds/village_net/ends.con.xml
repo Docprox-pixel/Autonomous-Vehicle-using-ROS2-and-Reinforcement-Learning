@@ -1,0 +1,11 @@
+<connections>
+  <connection from="-16" to="conn0" />
+  <connection from="conn0" to="-24" />
+  <connection from="24" to="-conn0" />
+  <connection from="-conn0" to="16" />
+  <connection from="14" to="conn1" />
+  <connection from="conn1" to="-20" />
+  <connection from="conn1" to="-25" />
+  <connection from="25" to="-conn1" />
+  <connection from="-conn1" to="-14" />
+</connections>

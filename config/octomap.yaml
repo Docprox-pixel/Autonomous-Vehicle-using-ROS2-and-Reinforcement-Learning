@@ -1,0 +1,25 @@
+# octomap_server: 3D voxel map of the static world, built online from the obstacle points
+# (road surface removed by cloud_preprocess, so the map holds structures, not asphalt).
+# Heights are in the map frame; map/odom z = 0 is base_link at start, the road is at z = -0.32.
+octomap_server:
+  ros__parameters:
+    use_sim_time: true
+    frame_id: map
+    base_frame_id: base_link
+    resolution: 0.2
+    sensor_model.max_range: 40.0
+    sensor_model.hit: 0.7
+    sensor_model.miss: 0.4
+    sensor_model.min: 0.12
+    sensor_model.max: 0.97
+    point_cloud_min_z: -0.5        # ignore anything below the road
+    point_cloud_max_z: 8.0         # tall enough for trees and building fronts
+    occupancy_min_z: -0.07         # /projected_map: road + 0.25 m ...
+    occupancy_max_z: 1.9           # ... up to roof height of a car
+    filter_ground_plane: false     # ground already removed upstream
+    filter_speckles: true
+    latch: false
+    publish_free_space: false
+    incremental_2D_projection: false
+    compress_map: true
+    colored_map: false

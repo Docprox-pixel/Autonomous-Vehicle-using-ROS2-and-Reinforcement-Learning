@@ -1,0 +1,6 @@
+<nodes>
+  <node id="M" x="442.32" y="249.11" type="priority"/>
+  <node id="T" x="502.32" y="249.11" type="priority"/>
+  <node id="X1" x="404.87" y="347.11" type="priority"/>
+  <node id="X2" x="404.87" y="307.11" type="priority"/>
+</nodes>

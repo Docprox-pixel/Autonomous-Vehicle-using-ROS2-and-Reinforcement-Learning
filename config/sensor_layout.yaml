@@ -1,0 +1,105 @@
+# Lidar layout: single source of truth for the bridge (TF frames) and tools/coverage_check.py.
+# worlds/*.wbt must place the Webots Lidar nodes at these poses (BmwX5 sensorsSlotCenter block).
+# All poses are in base_link = BmwX5 origin (rear-axle centre, 0.32 m above the road).
+#
+# Design goal: no blind zone around the car for objects >= 0.5 m tall (cones, children, kerbs).
+#   * roof lidar (VLP-16-like, 30 deg vertical)  -> long range, 360 deg, sees over traffic
+#   * 4 corner lidars (270 deg, 16 layers, low) -> near field, including right beside the doors
+# Verified with tools/coverage_check.py: 0 m^2 blind within 10 m for 0.5 m objects,
+# 0 m^2 blind within 5 m for 0.25 m objects.
+
+ground_z: -0.32
+# Vehicle envelope (BmwX5 + our roof sensor mount), metres. The planner and shield use it to decide
+# whether the car can pass: drive OVER things lower than ground_clearance - margin, pass UNDER things
+# whose lowest point is above height_with_sensors + margin, and fit through gaps wider than
+# width_with_mirrors + 2 * margin. auto_car_core/safety.py Params mirrors these numbers.
+vehicle:
+  length: 5.2               # bumper to bumper (car_box x -1.15 .. 4.05)
+  width: 2.0                # body
+  width_with_mirrors: 2.2
+  height_with_sensors: 2.37 # road to the top of the roof lidar
+  ground_clearance: 0.21
+  margin_vertical: 0.15     # headroom = height_with_sensors + margin
+  drive_over: 0.20          # m: driven over (ground clearance 0.21; raised crossings 0.15-0.17 m)
+  headroom: 2.52            # m: lowest point of an overhead obstacle must be above this
+car_box:                   # car body: self-occlusion + dropping self-hits
+  x: [-1.15, 4.05]
+  y: [-1.0, 1.0]
+  z: [-0.32, 1.45]
+# Parts of the car outside car_box that the lidars see (removed as self-hits). Found in the drive
+# test: the side mirrors (x ~2.1, y +/-1.1, 1.2 m above the road) froze the planner's hard margin.
+# The safety footprint (half width 1.0 + 0.4 m margin) still covers them.
+self_boxes:
+  - {name: mirror_left,  x: [1.8, 2.45], y: [0.95, 1.25],   z: [0.55, 1.15]}
+  - {name: mirror_right, x: [1.8, 2.45], y: [-1.25, -0.95], z: [0.55, 1.15]}
+# Front wheels: when steered (up to 0.45 rad) their edges swing ~0.1 m past the body side and the
+# lidars see them (x ~3.2, y +/-1.05). That froze the planner at full lock in the drive test.
+  - {name: wheel_front_left,  x: [2.4, 3.6], y: [0.6, 1.25],   z: [-0.32, 0.5]}
+  - {name: wheel_front_right, x: [2.4, 3.6], y: [-1.25, -0.6], z: [-0.32, 0.5]}
+# Side sills: a single return at (1.48, +1.05, 0.26 m above the road) froze the car at a stop line.
+  - {name: sill_left,  x: [-0.8, 2.7], y: [0.95, 1.12],   z: [-0.32, 0.15]}
+  - {name: sill_right, x: [-0.8, 2.7], y: [-1.12, -0.95], z: [-0.32, 0.15]}
+# Rear bumper: returns at x ~ -1.23 (8 cm past car_box) were the 0.06-0.14 m 'close approaches'
+# in the drive tests and froze the shield mid-turn at night. Front bumper given the same margin.
+  - {name: bumper_rear,  x: [-1.6, -1.1], y: [-0.98, 0.98], z: [-0.25, 1.0]}
+  - {name: bumper_front, x: [4.0, 4.2],    y: [-0.98, 0.98], z: [-0.25, 0.9]}
+
+lidars:
+  - name: lidar            # Webots device name (roof)
+    frame: lidar_link
+    xyz: [1.0, 0.0, 1.95]
+    yaw: 0.0
+    hfov: 6.28318
+    vfov: 0.5236           # 30 deg (+/-15), like a Velodyne VLP-16
+    layers: 16
+    resolution: 1024
+    range: [0.5, 100.0]
+  - name: lidar_fl
+    frame: lidar_fl_link
+    xyz: [4.1, 1.05, 0.25]
+    yaw: 0.7854
+    hfov: 4.7124           # 270 deg
+    vfov: 0.7              # +/-20 deg
+    layers: 16
+    resolution: 360
+    range: [0.2, 30.0]
+    near_blank: 0.45       # returns closer than this are dropped (stray hits on the own bumper corner)
+  - name: lidar_fr
+    frame: lidar_fr_link
+    xyz: [4.1, -1.05, 0.25]
+    yaw: -0.7854
+    hfov: 4.7124
+    vfov: 0.7
+    layers: 16
+    resolution: 360
+    range: [0.2, 30.0]
+    near_blank: 0.45       # returns closer than this are dropped (stray hits on the own bumper corner)
+  - name: lidar_rl
+    frame: lidar_rl_link
+    xyz: [-1.2, 1.05, 0.25]
+    yaw: 2.3562
+    hfov: 4.7124
+    vfov: 0.7
+    layers: 16
+    resolution: 360
+    range: [0.2, 30.0]
+    near_blank: 0.45       # returns closer than this are dropped (stray hits on the own bumper corner)
+  - name: lidar_rr
+    frame: lidar_rr_link
+    xyz: [-1.2, -1.05, 0.25]
+    yaw: -2.3562
+    hfov: 4.7124
+    vfov: 0.7
+    layers: 16
+    resolution: 360
+    range: [0.2, 30.0]
+    near_blank: 0.45       # returns closer than this are dropped (stray hits on the own bumper corner)
+
+# Surround cameras (in addition to front_camera -> /camera/image_raw): the car sees all around it.
+# Poses are relative to the roof SENSOR_MOUNT (same mount as the front camera / roof lidar);
+# yaw: 0 = forward, +pi/2 = left. Each publishes <topic>/image_raw + <topic>/camera_info
+# (frame <name>_optical_frame) and the detector labels lidar tracks seen by ANY camera.
+surround_cameras:
+  - {name: camera_rear,  topic: /camera/rear,  xyz: [-0.55, 0.0, 0.0],  yaw: 3.14159265, fov: 2.0, width: 320, height: 240}
+  - {name: camera_left,  topic: /camera/left,  xyz: [-0.2, 0.35, 0.0],  yaw: 1.57079633, fov: 2.0, width: 320, height: 240}
+  - {name: camera_right, topic: /camera/right, xyz: [-0.2, -0.35, 0.0], yaw: -1.57079633, fov: 2.0, width: 320, height: 240}

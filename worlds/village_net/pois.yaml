@@ -1,0 +1,759 @@
+source: village.wbt
+places:
+- name: Building 1
+  kind: building
+  webots_name: SimpleBuilding
+  x: 27.43
+  y: -626.25
+  height: 45.0
+  footprint:
+  - - 27.43
+    - -626.25
+  - - 38.52
+    - -637.07
+  - - 46.65
+    - -626.48
+  - - 34.82
+    - -612.67
+- name: Building 2
+  kind: building
+  webots_name: building(1)
+  x: 231.37
+  y: -559.79
+  height: 6.0
+  footprint:
+  - - 241.17
+    - -554.13
+  - - 225.72
+    - -549.99
+  - - 221.57
+    - -565.45
+  - - 237.03
+    - -569.59
+- name: Building 3
+  kind: building
+  webots_name: building(2)
+  x: 283.39
+  y: -631.02
+  height: 5.0
+  footprint:
+  - - 286.92
+    - -624.9
+  - - 277.27
+    - -627.49
+  - - 279.85
+    - -637.15
+  - - 289.51
+    - -634.56
+- name: Building 4
+  kind: building
+  webots_name: building(3)
+  x: 272.19
+  y: -627.58
+  height: 5.0
+  footprint:
+  - - 275.72
+    - -621.46
+  - - 266.06
+    - -624.05
+  - - 268.65
+    - -633.71
+  - - 278.31
+    - -631.12
+- name: Building 5
+  kind: building
+  webots_name: building(4)
+  x: 261.05
+  y: -623.71
+  height: 5.0
+  footprint:
+  - - 264.58
+    - -617.59
+  - - 254.92
+    - -620.18
+  - - 257.51
+    - -629.84
+  - - 267.17
+    - -627.25
+- name: Building 6
+  kind: building
+  webots_name: building(5)
+  x: 250.82
+  y: -622.98
+  height: 5.0
+  footprint:
+  - - 254.36
+    - -616.86
+  - - 244.7
+    - -619.45
+  - - 247.29
+    - -629.11
+  - - 256.95
+    - -626.52
+- name: Building 7
+  kind: building
+  webots_name: building(6)
+  x: 241.03
+  y: -625.5
+  height: 5.0
+  footprint:
+  - - 244.56
+    - -619.38
+  - - 234.9
+    - -621.96
+  - - 237.49
+    - -631.62
+  - - 247.15
+    - -629.03
+- name: Village Hospital
+  kind: hospital
+  webots_name: building(7)
+  x: 236.65
+  y: -524.89
+  height: 6.0
+  footprint:
+  - - 246.45
+    - -519.23
+  - - 230.99
+    - -515.09
+  - - 226.85
+    - -530.54
+  - - 242.31
+    - -534.68
+- name: Building 9
+  kind: building
+  webots_name: building(8)
+  x: 195.14
+  y: -513.76
+  height: 6.0
+  footprint:
+  - - 200.8
+    - -503.96
+  - - 185.34
+    - -508.1
+  - - 189.48
+    - -523.56
+  - - 204.94
+    - -519.41
+- name: Apartments 1
+  kind: residential
+  webots_name: ResidentialBuilding
+  x: 362.03
+  y: -329.9
+  height: 15.0
+  footprint:
+  - - 362.51
+    - -359.49
+  - - 376.42
+    - -355.76
+  - - 361.56
+    - -300.31
+  - - 347.65
+    - -304.04
+- name: House 1
+  kind: house
+  webots_name: SimpleTwoFloorsHouse
+  x: 150.42
+  y: -490.77
+  height: 7.0
+  footprint:
+  - - 153.22
+    - -493.7
+  - - 154.61
+    - -490.37
+  - - 153.96
+    - -487.95
+  - - 151.38
+    - -486.84
+  - - 145.3
+    - -488.47
+  - - 147.14
+    - -495.33
+- name: House 2
+  kind: house
+  webots_name: simple two floors house(1)
+  x: 257.64
+  y: -571.82
+  height: 7.0
+  footprint:
+  - - 253.71
+    - -572.79
+  - - 255.9
+    - -575.65
+  - - 258.32
+    - -576.3
+  - - 260.57
+    - -574.62
+  - - 262.2
+    - -568.54
+  - - 255.34
+    - -566.7
+- name: House 3
+  kind: house
+  webots_name: simple two floors house(2)
+  x: 177.12
+  y: -573.17
+  height: 7.0
+  footprint:
+  - - 173.57
+    - -575.12
+  - - 176.43
+    - -577.32
+  - - 178.93
+    - -577.32
+  - - 180.67
+    - -575.12
+  - - 180.67
+    - -568.82
+  - - 173.57
+    - -568.82
+- name: House 4
+  kind: house
+  webots_name: BungalowStyleHouse
+  x: 108.07
+  y: -534.45
+  height: 6.0
+  footprint:
+  - - 115.49
+    - -538.93
+  - - 112.25
+    - -526.86
+  - - 100.66
+    - -529.96
+  - - 103.89
+    - -542.03
+- name: House 5
+  kind: house
+  webots_name: bungalow style house(1)
+  x: 369.52
+  y: -608.17
+  height: 6.0
+  footprint:
+  - - 377.11
+    - -604.0
+  - - 365.04
+    - -600.76
+  - - 361.94
+    - -612.35
+  - - 374.01
+    - -615.59
+- name: House 6
+  kind: house
+  webots_name: bungalow style house(2)
+  x: 373.56
+  y: -594.33
+  height: 6.0
+  footprint:
+  - - 365.97
+    - -598.51
+  - - 378.05
+    - -601.75
+  - - 381.15
+    - -590.15
+  - - 369.08
+    - -586.92
+- name: House 7
+  kind: house
+  webots_name: bungalow style house(3)
+  x: 294.66
+  y: -549.37
+  height: 6.0
+  footprint:
+  - - 302.07
+    - -553.85
+  - - 298.84
+    - -541.78
+  - - 287.25
+    - -544.88
+  - - 290.48
+    - -556.96
+- name: House 8
+  kind: house
+  webots_name: bungalow style house(4)
+  x: 206.93
+  y: -554.35
+  height: 6.0
+  footprint:
+  - - 209.35
+    - -546.03
+  - - 198.52
+    - -552.28
+  - - 204.52
+    - -562.67
+  - - 215.35
+    - -556.42
+- name: House 9
+  kind: house
+  webots_name: bungalow style house(5)
+  x: 190.81
+  y: -605.78
+  height: 6.0
+  footprint:
+  - - 193.22
+    - -597.46
+  - - 182.39
+    - -603.71
+  - - 188.39
+    - -614.1
+  - - 199.22
+    - -607.85
+- name: House 10
+  kind: house
+  webots_name: bungalow style house(6)
+  x: 185.62
+  y: -482.61
+  height: 6.0
+  footprint:
+  - - 190.1
+    - -475.2
+  - - 178.03
+    - -478.43
+  - - 181.13
+    - -490.02
+  - - 193.21
+    - -486.79
+- name: House 11
+  kind: house
+  webots_name: bungalow style house(7)
+  x: 170.58
+  y: -544.57
+  height: 6.0
+  footprint:
+  - - 172.99
+    - -536.25
+  - - 162.17
+    - -542.5
+  - - 168.17
+    - -552.89
+  - - 178.99
+    - -546.64
+- name: House 12
+  kind: house
+  webots_name: ModernHouse
+  x: 205.43
+  y: -688.34
+  height: 7.0
+  footprint:
+  - - 210.65
+    - -676.05
+  - - 189.78
+    - -681.65
+  - - 193.56
+    - -695.75
+  - - 214.42
+    - -690.16
+- name: House 13
+  kind: house
+  webots_name: modern house(1)
+  x: 120.68
+  y: -679.41
+  height: 7.0
+  footprint:
+  - - 132.97
+    - -684.62
+  - - 127.38
+    - -663.76
+  - - 113.28
+    - -667.54
+  - - 118.87
+    - -688.4
+- name: House 14
+  kind: house
+  webots_name: modern house(2)
+  x: 159.47
+  y: -689.83
+  height: 7.0
+  footprint:
+  - - 151.25
+    - -700.35
+  - - 172.85
+    - -700.35
+  - - 172.85
+    - -685.75
+  - - 151.25
+    - -685.75
+- name: House 15
+  kind: house
+  webots_name: modern house(3)
+  x: 283.76
+  y: -587.46
+  height: 7.0
+  footprint:
+  - - 271.39
+    - -592.46
+  - - 290.09
+    - -603.26
+  - - 297.39
+    - -590.61
+  - - 278.69
+    - -579.81
+- name: House 16
+  kind: house
+  webots_name: modern house(4)
+  x: 177.05
+  y: -656.26
+  height: 7.0
+  footprint:
+  - - 168.83
+    - -666.78
+  - - 190.43
+    - -666.78
+  - - 190.43
+    - -652.18
+  - - 168.83
+    - -652.18
+- name: Subway restaurant
+  kind: restaurant
+  webots_name: FastFoodRestaurant
+  x: 247.6
+  y: -305.89
+  height: 5.0
+  footprint:
+  - - 251.84
+    - -313.24
+  - - 254.95
+    - -301.65
+  - - 243.36
+    - -298.54
+  - - 240.25
+    - -310.13
+- name: Restaurant
+  kind: restaurant
+  webots_name: fast food restaurant(1)
+  x: 231.77
+  y: -616.19
+  height: 4.2
+  footprint:
+  - - 233.15
+    - -622.78
+  - - 237.31
+    - -620.01
+  - - 230.38
+    - -609.6
+  - - 226.22
+    - -612.37
+- name: Restaurant
+  kind: restaurant
+  webots_name: fast food restaurant(2)
+  x: 206.91
+  y: -507.52
+  height: 5.0
+  footprint:
+  - - 203.37
+    - -513.64
+  - - 213.03
+    - -511.05
+  - - 210.44
+    - -501.39
+  - - 200.78
+    - -503.98
+- name: Subway restaurant
+  kind: restaurant
+  webots_name: fast food restaurant(3)
+  x: 49.47
+  y: -632.63
+  height: 5.0
+  footprint:
+  - - 46.85
+    - -626.41
+  - - 43.24
+    - -630.02
+  - - 52.08
+    - -638.86
+  - - 55.69
+    - -635.25
+- name: Museum
+  kind: museum
+  webots_name: Museum
+  x: 17.91
+  y: -569.66
+  height: 12.0
+  footprint:
+  - - 3.66
+    - -578.88
+  - - 13.52
+    - -586.06
+  - - 22.71
+    - -580.57
+  - - 29.77
+    - -570.87
+  - - 32.17
+    - -560.43
+  - - 22.31
+    - -553.25
+- name: The Three Towers
+  kind: landmark
+  webots_name: TheThreeTowers
+  x: 297.06
+  y: -289.3
+  height: 60.0
+  footprint:
+  - - 324.09
+    - -297.35
+  - - 324.09
+    - -281.3
+  - - 270.02
+    - -281.3
+  - - 270.02
+    - -297.35
+- name: Public toilet
+  kind: toilet
+  webots_name: PublicToilet
+  x: 193.98
+  y: -535.09
+  height: 3.0
+  footprint:
+  - - 195.33
+    - -536.28
+  - - 194.56
+    - -533.38
+  - - 192.62
+    - -533.9
+  - - 193.4
+    - -536.8
+- name: Public toilet
+  kind: toilet
+  webots_name: public toilet(1)
+  x: 99.45
+  y: -616.11
+  height: 3.0
+  footprint:
+  - - 97.84
+    - -615.31
+  - - 99.34
+    - -617.91
+  - - 101.07
+    - -616.91
+  - - 99.57
+    - -614.31
+- name: Public toilet
+  kind: toilet
+  webots_name: public toilet(2)
+  x: 289.94
+  y: -329.65
+  height: 3.0
+  footprint:
+  - - 288.59
+    - -328.46
+  - - 289.36
+    - -331.36
+  - - 291.29
+    - -330.84
+  - - 290.52
+    - -327.94
+- name: Bus stop
+  kind: bus_stop
+  webots_name: BusStop
+  x: 232.17
+  y: -418.69
+  height: 3.0
+  footprint:
+  - - 234.14
+    - -417.87
+  - - 230.15
+    - -418.01
+  - - 230.19
+    - -419.51
+  - - 234.19
+    - -419.37
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(1)
+  x: 331.02
+  y: -380.46
+  height: 3.0
+  footprint:
+  - - 333.16
+    - -380.47
+  - - 329.42
+    - -379.04
+  - - 328.89
+    - -380.44
+  - - 332.62
+    - -381.87
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(2)
+  x: 337.11
+  y: -541.23
+  height: 3.0
+  footprint:
+  - - 337.68
+    - -539.18
+  - - 335.33
+    - -542.41
+  - - 336.54
+    - -543.29
+  - - 338.89
+    - -540.06
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(3)
+  x: 280.77
+  y: -654.99
+  height: 3.0
+  footprint:
+  - - 280.52
+    - -652.87
+  - - 279.56
+    - -656.76
+  - - 281.02
+    - -657.11
+  - - 281.97
+    - -653.23
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(4)
+  x: 105.43
+  y: -603.33
+  height: 3.0
+  footprint:
+  - - 107.14
+    - -602.05
+  - - 103.3
+    - -603.16
+  - - 103.72
+    - -604.6
+  - - 107.56
+    - -603.49
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(5)
+  x: 186.21
+  y: -530.63
+  height: 3.0
+  footprint:
+  - - 184.75
+    - -532.19
+  - - 188.34
+    - -530.42
+  - - 187.67
+    - -529.07
+  - - 184.08
+    - -530.84
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(6)
+  x: 107.9
+  y: -568.16
+  height: 3.0
+  footprint:
+  - - 106.16
+    - -569.4
+  - - 110.03
+    - -568.37
+  - - 109.64
+    - -566.92
+  - - 105.78
+    - -567.94
+- name: Bus stop
+  kind: bus_stop
+  webots_name: bus stop(7)
+  x: 170.79
+  y: -521.36
+  height: 3.0
+  footprint:
+  - - 172.33
+    - -519.88
+  - - 168.66
+    - -521.46
+  - - 169.26
+    - -522.84
+  - - 172.93
+    - -521.25
+- name: Highway fuel station
+  kind: fuel
+  webots_name: highway fuel station
+  x: 515.0
+  y: -397.0
+  height: 6.0
+  footprint:
+  - - 500.86
+    - -393.92
+  - - 500.98
+    - -409.68
+  - - 510.98
+    - -409.68
+  - - 530.81
+    - -406.58
+  - - 530.81
+    - -389.58
+  - - 518.71
+    - -378.42
+  - - 500.86
+    - -378.42
+- name: Construction site
+  kind: construction
+  webots_name: BuildingUnderConstruction
+  x: 216.75
+  y: -343.85
+  height: 20.0
+  footprint:
+  - - 208.75
+    - -351.85
+  - - 224.75
+    - -351.85
+  - - 224.75
+    - -335.85
+  - - 208.75
+    - -335.85
+- name: Highway Hotel
+  kind: hotel
+  webots_name: highway hotel
+  x: 540.0
+  y: -345.0
+  height: 20.0
+  footprint:
+  - - 546.85
+    - -338.15
+  - - 533.15
+    - -338.15
+  - - 533.15
+    - -351.85
+  - - 546.85
+    - -351.85
+- name: Shopping centre
+  kind: shop
+  webots_name: highway shopping centre
+  x: 505.0
+  y: -282.0
+  height: 12.0
+  footprint:
+  - - 494.0
+    - -293.0
+  - - 516.0
+    - -293.0
+  - - 516.0
+    - -271.0
+  - - 494.0
+    - -271.0
+- name: Warehouse
+  kind: warehouse
+  webots_name: highway warehouse
+  x: 545.0
+  y: -238.0
+  height: 8.0
+  footprint:
+  - - 561.3
+    - -243.9
+  - - 561.3
+    - -232.1
+  - - 528.7
+    - -232.1
+  - - 528.7
+    - -243.9
+- name: Car wash
+  kind: car_wash
+  webots_name: highway car wash
+  x: 488.0
+  y: -357.0
+  height: 5.0
+  footprint:
+  - - 491.09
+    - -363.94
+  - - 491.09
+    - -348.84
+  - - 485.52
+    - -348.84
+  - - 485.52
+    - -363.94

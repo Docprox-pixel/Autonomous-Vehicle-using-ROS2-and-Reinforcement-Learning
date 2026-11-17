@@ -1,0 +1,42 @@
+# colcon / ROS 2 build output
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# simulation runs, recordings
+tools/sim/logs/
+docs/chat/
+docs/demo/demo_raw.mp4
+*.stop
+
+# world / network edit backups (each tool writes .before_<step>; the git history is the backup now)
+worlds/*.before_*
+worlds/*.prev
+worlds/**/*.before_*
+!worlds/village_net/sumo.net.xml.before_connect
+worlds/**/*.prev
+worlds/**/*.tmp.xml
+worlds/village_net/plain*/
+worlds/village_net/rebuild/
+
+# model weights: downloaded by name (see README)
+models/*.pt
+
+# RL: training checkpoints and runs (the final policies in rl/models/*.zip are kept)
+rl/models/ckpt*/
+rl/models/curriculum/
+rl/models/run*/
+rl/models/park_sac_her.zip
+rl/results/
+tensorboard/
+
+# old experiments
+archive/
+
+# raw OpenStreetMap source (third-party data with real names / contacts; only used to generate metro_city)
+worlds/osm_source/

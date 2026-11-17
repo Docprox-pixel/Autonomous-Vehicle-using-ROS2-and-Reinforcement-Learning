@@ -1,0 +1,70 @@
+# slam_toolbox (online, async): builds /map from /scan and publishes map -> odom.
+# Sized for a city: car-scale distances, 360 deg lidar, up to ~10 m/s.
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: true
+
+    # Frames / topics (sensor contract)
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_link
+    scan_topic: /scan_static      # static obstacles 0.25-2.2 m above the road (object_tracker removes moving cars)
+    mode: mapping               # 'localization' + map_file_name to reuse a saved map
+
+    # Solver
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    # Map
+    resolution: 0.2             # m per cell (city scale)
+    max_laser_range: 60.0       # lidar sees 100 m, but far returns are sparse/noisy
+    map_update_interval: 2.0
+    transform_publish_period: 0.02
+    transform_timeout: 0.2
+    tf_buffer_duration: 30.0
+    stack_size_to_use: 40000000
+    throttle_scans: 1
+    debug_logging: false
+    enable_interactive_mode: false
+
+    # When to add a new scan to the graph
+    minimum_time_interval: 0.3
+    minimum_travel_distance: 0.5
+    minimum_travel_heading: 0.3
+
+    # Scan matching
+    use_scan_matching: true
+    use_scan_barycenter: true
+    scan_buffer_size: 10
+    scan_buffer_maximum_scan_distance: 20.0
+    link_match_minimum_response_fine: 0.1
+    link_scan_maximum_distance: 3.0
+    # The EKF (IMU heading) drifts ~0.2% and ~0 deg, so the matcher only needs to search close to
+    # odometry. Wide searches (default coarse +/-20 deg) let it lock onto wrong matches along long,
+    # featureless barriers (seen as a 13 m / 20 deg jump with the flattened 3D scan).
+    correlation_search_space_dimension: 0.6
+    correlation_search_space_resolution: 0.02
+    correlation_search_space_smear_deviation: 0.1
+    distance_variance_penalty: 1.0   # higher = stay closer to odometry
+    angle_variance_penalty: 3.0
+    fine_search_angle_offset: 0.00349
+    coarse_search_angle_offset: 0.1   # +/-5.7 deg (was +/-20)
+    coarse_angle_resolution: 0.0175
+    minimum_angle_penalty: 0.9
+    minimum_distance_penalty: 0.5
+    use_response_expansion: true
+
+    # Loop closure (removes accumulated drift when the car revisits a place)
+    do_loop_closing: true
+    loop_search_maximum_distance: 10.0
+    loop_match_minimum_chain_size: 10
+    loop_match_maximum_variance_coarse: 3.0
+    loop_match_minimum_response_coarse: 0.35
+    loop_match_minimum_response_fine: 0.55   # stricter: a false loop closure bends the whole map
+    loop_search_space_dimension: 10.0
+    loop_search_space_resolution: 0.05
+    loop_search_space_smear_deviation: 0.03

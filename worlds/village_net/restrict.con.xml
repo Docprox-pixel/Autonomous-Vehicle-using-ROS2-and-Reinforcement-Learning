@@ -1,0 +1,8 @@
+<connections>
+  <!-- junction 38: conn1 joins roads 25/20 at an acute angle (Y). The two hairpin movements
+       (road 25 northbound -> conn1, conn1 -> road 25 southbound, 137-145 deg) are banned, as on a
+       real acute Y-junction ("no right turn"); traffic uses the natural directions instead. -->
+  <connection from="20" to="-conn1" fromLane="0" toLane="0"/>   <!-- the natural way onto conn1 -->
+  <delete from="25" to="-conn1"/>
+  <delete from="conn1" to="-25"/>
+</connections>

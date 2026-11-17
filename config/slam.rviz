@@ -1,0 +1,230 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Marker
+      Name: Car label (road type, driver state)
+      Enabled: true
+      Topic:
+        Value: /route/car_label
+        Reliability Policy: Reliable
+        Depth: 2
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Road map (click a goal with 2D Goal Pose)
+      Enabled: true
+      Topic:
+        Value: /map/lanes
+        Reliability Policy: Reliable
+        Depth: 1
+        History Policy: Keep Last
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 5
+      Plane Cell Count: 40
+      Reference Frame: <Fixed Frame>
+    - Class: rviz_default_plugins/Map
+      Name: Map /map
+      Enabled: true
+      Topic:
+        Value: /map
+        Reliability Policy: Reliable
+        Depth: 1
+        History Policy: Keep Last
+        Durability Policy: Transient Local
+      Color Scheme: map
+      Alpha: 0.8
+      Draw Behind: true
+    - Class: rviz_default_plugins/MarkerArray
+      Name: OctoMap 3D /occupied_cells_vis_array
+      Enabled: true
+      Topic:
+        Value: /occupied_cells_vis_array
+        Reliability Policy: Reliable
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Tracked objects /perception/track_markers
+      Enabled: true
+      Topic:
+        Value: /perception/track_markers
+        Reliability Policy: Reliable
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Planner arcs /planner/arcs
+      Enabled: true
+      Topic:
+        Value: /planner/arcs
+        Reliability Policy: Reliable
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Route /route/markers
+      Enabled: true
+      Topic:
+        Value: /route/markers
+        Reliability Policy: Reliable
+        Depth: 1
+        History Policy: Keep Last
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Parking bays /map/parking
+      Enabled: true
+      Topic:
+        Value: /map/parking
+        Reliability Policy: Reliable
+        Depth: 1
+        History Policy: Keep Last
+        Durability Policy: Transient Local
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Enabled: true
+      Show Names: true
+      Show Axes: true
+      Marker Scale: 2
+    - Class: rviz_default_plugins/LaserScan
+      Name: LaserScan /scan
+      Enabled: true
+      Topic:
+        Value: /scan
+        Reliability Policy: Best Effort
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+      Size (m): 0.3
+      Style: Flat Squares
+      Color Transformer: FlatColor
+      Color: 255; 50; 50
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Obstacles /perception/obstacle_points
+      Enabled: true
+      Topic:
+        Value: /perception/obstacle_points
+        Reliability Policy: Best Effort
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+      Size (m): 0.15
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: AxisColor
+      Axis: Z
+    - Class: rviz_default_plugins/Odometry
+      Name: Odometry /wheel/odom
+      Enabled: true
+      Topic:
+        Value: /wheel/odom
+        Reliability Policy: Reliable
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+      Keep: 50
+      Covariance:
+        Value: false
+      Shape:
+        Value: Arrow
+        Shaft Length: 2
+        Shaft Radius: 0.2
+        Head Length: 0.8
+        Head Radius: 0.4
+    - Class: rviz_default_plugins/Odometry
+      Name: EKF /odometry/filtered
+      Enabled: true
+      Topic:
+        Value: /odometry/filtered
+        Reliability Policy: Reliable
+        Depth: 5
+        History Policy: Keep Last
+        Durability Policy: Volatile
+      Keep: 200
+      Covariance:
+        Value: false
+      Shape:
+        Value: Arrow
+        Color: 50; 200; 255
+        Shaft Length: 2
+        Shaft Radius: 0.2
+        Head Length: 0.8
+        Head Radius: 0.4
+    - Class: rviz_default_plugins/Image
+      Name: Camera /camera/image_raw
+      Enabled: true
+      Topic:
+        Value: /camera/image_raw
+        Reliability Policy: Reliable
+        Depth: 2
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/Image
+      Name: Front camera (detections)
+      Enabled: true
+      Topic:
+        Value: /perception/detections_image
+        Reliability Policy: Best Effort
+        Depth: 2
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/Image
+      Name: Rear camera
+      Enabled: true
+      Topic:
+        Value: /camera/rear/image_raw
+        Reliability Policy: Best Effort
+        Depth: 2
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/Image
+      Name: Left camera
+      Enabled: true
+      Topic:
+        Value: /camera/left/image_raw
+        Reliability Policy: Best Effort
+        Depth: 2
+        History Policy: Keep Last
+        Durability Policy: Volatile
+    - Class: rviz_default_plugins/Image
+      Name: Right camera
+      Enabled: true
+      Topic:
+        Value: /camera/right/image_raw
+        Reliability Policy: Best Effort
+        Depth: 2
+        History Policy: Keep Last
+        Durability Policy: Volatile
+  Global Options:
+    Fixed Frame: map
+    Background Color: 30; 30; 35
+    Frame Rate: 30
+  Tools:
+    # First tool = default tool: MoveCamera (scroll = zoom, drag = pan). Pick '2D Goal Pose' in the
+    # toolbar to set a destination; RViz then returns to MoveCamera.
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/SetGoal
+      Topic:
+        Value: /goal_pose
+    - Class: rviz_default_plugins/Measure
+    - Class: rviz_default_plugins/Interact
+  Views:
+    Current:
+      # Top-down map view: scroll wheel = zoom, middle/shift-drag = pan, toolbar '2D Goal Pose'
+      # then click-drag on the map = destination (the car plans a route there).
+      Class: rviz_default_plugins/TopDownOrtho
+      Name: Map (top-down)
+      Scale: 4
+      Angle: 0
+      X: 0
+      Y: 0
+      Target Frame: base_link
+      Near Clip Distance: 0.01
+Window Geometry:
+  Width: 1600
+  Height: 1000

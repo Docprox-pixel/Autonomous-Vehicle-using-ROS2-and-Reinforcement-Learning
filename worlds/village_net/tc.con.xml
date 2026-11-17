@@ -1,0 +1,8 @@
+<connections>
+  <connection from="3" to="tc_Custom14_a"/>
+  <connection from="tc_Custom14_a" to="tc_Custom14_b"/>
+  <connection from="tc_Custom14_b" to="-3"/>
+  <connection from="7" to="tc_Custom16_a"/>
+  <connection from="tc_Custom16_a" to="tc_Custom16_b"/>
+  <connection from="tc_Custom16_b" to="-7"/>
+</connections>

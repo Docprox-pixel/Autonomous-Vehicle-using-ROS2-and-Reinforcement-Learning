@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<robot name="vehicle">
+    <webots>
+        <!--
+          All sensor/actuator I/O goes through our bridge plugin so the topics follow
+          the simulator-agnostic contract (see auto_car/vehicle_driver.py).
+          webots_ros2_driver would otherwise auto-publish every device on its own
+          topics, so the built-in interfaces are disabled below.
+        -->
+        <plugin type="auto_car_sim.vehicle_driver.VehicleDriver">
+            <wheelbase>2.995</wheelbase>
+            <maxSteeringAngle>0.5</maxSteeringAngle>
+            <maxSpeed>25.0</maxSpeed>
+            <!-- false: robot_localization (config/ekf.yaml) publishes odom -> base_link -->
+            <publishOdomTf>false</publishOdomTf>
+            <cameraPeriodMs>64</cameraPeriodMs>
+            <lidarPeriodMs>96</lidarPeriodMs>
+            <imuPeriodMs>16</imuPeriodMs>
+            <scanLayer>-1</scanLayer>
+            <!-- lidar names/poses/frames: config/sensor_layout.yaml (optional override: <sensorLayout>path</sensorLayout>) -->
+        </plugin>
+
+        <device reference="front_camera" type="Camera"><ros><enabled>false</enabled></ros></device>
+        <device reference="lidar" type="Lidar"><ros><enabled>false</enabled></ros></device>
+        <device reference="lidar_fl" type="Lidar"><ros><enabled>false</enabled></ros></device>
+        <device reference="lidar_fr" type="Lidar"><ros><enabled>false</enabled></ros></device>
+        <device reference="lidar_rl" type="Lidar"><ros><enabled>false</enabled></ros></device>
+        <device reference="lidar_rr" type="Lidar"><ros><enabled>false</enabled></ros></device>
+        <device reference="gps" type="GPS"><ros><enabled>false</enabled></ros></device>
+        <device reference="imu" type="InertialUnit"><ros><enabled>false</enabled></ros></device>
+        <device reference="gyro" type="Gyro"><ros><enabled>false</enabled></ros></device>
+        <device reference="accelerometer" type="Accelerometer"><ros><enabled>false</enabled></ros></device>
+    </webots>
+</robot>
